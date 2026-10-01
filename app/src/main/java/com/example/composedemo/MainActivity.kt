@@ -58,3 +58,27 @@ fun DemoSlider(sliderPosition: Float, onPositionChange: (Float) -> Unit ) {
         onValueChange = { onPositionChange(it) }
     )
 }
+
+@Composable
+fun DemoScreen(modifier: Modifier = Modifier) {
+    var sliderPosition by remember { mutableFloatStateOf(20f) }
+    val handlePositionChange = { position : Float ->
+        sliderPosition = position
+    }
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier.fillMaxSize()
+    ) {
+        DemoText(message = "Welcome to Compose", fontSize = sliderPosition)
+        Spacer(modifier = Modifier.height(150.dp))
+        DemoSlider(
+            sliderPosition = sliderPosition,
+            onPositionChange = handlePositionChange
+        )
+        Text(
+            style = MaterialTheme.typography.headlineMedium,
+            text = sliderPosition.toInt().toString() + "sp"
+        )
+    }
+}
