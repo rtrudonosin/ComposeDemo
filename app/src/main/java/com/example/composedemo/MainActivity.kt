@@ -49,3 +49,12 @@ fun DemoText(message: String, fontSize: Float) {
         fontWeight = FontWeight.Bold
     )
 }
+@Composable
+fun DemoSlider(sliderPosition: Float, onPositionChange: (Float) -> Unit ) {
+    Slider(
+        modifier = Modifier.padding(10.dp),
+        valueRange = 20f..38f,
+        value = sliderPosition,
+        onValueChange = { onPositionChange(it) }
+    )
+}
